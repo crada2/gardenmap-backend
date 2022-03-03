@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Product {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private String title;
     private String description;
     private int price;
