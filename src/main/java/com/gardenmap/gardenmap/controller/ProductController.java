@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
     @GetMapping("/products/{id}")
-    Product getById(@PathVariable Integer id){
-        return null;
+    Product getById(@PathVariable Long id){
+        return new Product(1L, "title", "description", 6);
     }
 }
