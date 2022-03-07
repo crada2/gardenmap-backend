@@ -1,5 +1,6 @@
 package com.gardenmap.gardenmap.controller;
 
+import com.gardenmap.gardenmap.dtos.ProductResponseDTO;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,12 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    Product getById(@PathVariable Long id){
+    ProductResponseDTO getById(@PathVariable Long id){
         var postOptional = productRepository.findById(id);
         var product = postOptional.get();
-        return product;
-    }
+        var productDTO = new ProductResponseDTO().mapFromProduct(product);
 
+        return productDTO;
+    }
 
 }
