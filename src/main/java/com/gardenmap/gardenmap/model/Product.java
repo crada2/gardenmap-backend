@@ -9,15 +9,16 @@ import javax.persistence.*;
 
 
 @Entity
-@Table (name="product")
+@Table (name="products")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
-    private int price;
+    private String direction;
+    private Double price;
 
 
 
