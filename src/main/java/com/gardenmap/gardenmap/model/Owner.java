@@ -19,7 +19,9 @@ public class Owner {
     private String name;
     private String email;
     private String password;
+    private String direction;
+    private Long number;
 
-    @OneToMany
-    private List<Product> productList;
+    /*@OneToMany
+    private List<Product> productList;*/
 }
