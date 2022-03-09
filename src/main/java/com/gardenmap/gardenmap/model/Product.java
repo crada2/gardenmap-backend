@@ -1,5 +1,6 @@
 package com.gardenmap.gardenmap.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,16 +12,17 @@ import javax.persistence.*;
 @Entity
 @Table (name="products")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
+
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String description;
+    private String observations;
     private Double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "owner_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Owner owner;
-
-
 }

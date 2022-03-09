@@ -19,7 +19,6 @@ public class ProductController {
     OwnerRepository ownerRepository;
 
     private Owner getAuthOwner(){
-
         return ownerRepository.findById(1L).get();
     }
     
@@ -37,6 +36,7 @@ public class ProductController {
 
         return productDTO;
     }
+
     @PostMapping("/products")
     Product create(@RequestBody Product product) {
         var  authOwner = this.getAuthOwner();
@@ -44,12 +44,12 @@ public class ProductController {
         productRepository.save(product);
         return product;
     }
+
     @GetMapping("/products/owners/{id}")
         List<Product> getAllByOwner(@PathVariable Long id){
         var owner = ownerRepository.findById(id).get();
         return productRepository.findAllByOwner(owner);
     }
-
 
 
 

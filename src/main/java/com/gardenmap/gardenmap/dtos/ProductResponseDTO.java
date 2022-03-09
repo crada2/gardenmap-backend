@@ -1,4 +1,4 @@
-package com.gardenmap.gardenmap.dtos;
+/*package com.gardenmap.gardenmap.dtos;
 
 import com.gardenmap.gardenmap.model.Product;
 
@@ -20,3 +20,4 @@ public class ProductResponseDTO {
         return this;
     }
 }
+ */
