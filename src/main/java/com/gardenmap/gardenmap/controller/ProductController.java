@@ -38,7 +38,7 @@ public class ProductController {
 
         Product savedProduct = productRepository.save(product);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedProduct.getId().toUri());
+                .buildAndExpand(savedProduct.getId()).toUri();
         return ResponseEntity.created(location).body(savedProduct);
 
     }
