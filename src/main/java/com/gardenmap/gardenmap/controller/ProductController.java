@@ -1,55 +1,94 @@
 package com.gardenmap.gardenmap.controller;
 
-import com.gardenmap.gardenmap.dtos.ProductResponseDTO;
 import com.gardenmap.gardenmap.model.Owner;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.OwnerRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.List;
+import java.net.URI;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/products")
+
 public class ProductController {
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final OwnerRepository ownerRepository;
 
     @Autowired
-    OwnerRepository ownerRepository;
+    public ProductController(ProductRepository productRepository, OwnerRepository ownerRepository) {
+        this.productRepository = productRepository;
+        this.ownerRepository = ownerRepository;
 
-    private Owner getAuthOwner(){
-        return ownerRepository.findById(1L).get();
-    }
-    
-    @GetMapping("/products")
-    List<Product> getAll() {
-        var product = productRepository.findAll();
-        return product;
     }
 
-    @GetMapping("/products/{id}")
-    ProductResponseDTO getById(@PathVariable Long id){
-        var postOptional = productRepository.findById(id);
-        var product = postOptional.get();
-        var productDTO = new ProductResponseDTO().mapFromProduct(product);
+    @PostMapping
+    public ResponseEntity<Product> create(@RequestBody Product product) {
+        Optional<Owner> optionalOwner = ownerRepository.findById(product.getOwner().getId());
+        if (!optionalOwner.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        product.setOwner(optionalOwner.get());
 
-        return productDTO;
+        Product savedProduct = productRepository.save(product);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedProduct.getId().toUri());
+        return ResponseEntity.created(location).body(savedProduct);
+
     }
 
-    @PostMapping("/products")
-    Product create(@RequestBody Product product) {
-        var  authOwner = this.getAuthOwner();
-        product.setOwner(authOwner);
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id) {
+        Optional<Owner> optionalOwner = ownerRepository.findById(product.getOwner().getId());
+        if (!optionalOwner.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        product.setOwner(optionalOwner.get());
+        product.setId(optionalProduct.get().getId());
         productRepository.save(product);
-        return product;
+
+        return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/products/owners/{id}")
-        List<Product> getAllByOwner(@PathVariable Long id){
-        var owner = ownerRepository.findById(id).get();
-        return productRepository.findAllByOwner(owner);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Product> delete (@PathVariable Long id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        productRepository.delete(optionalProduct.get());
+
+        return ResponseEntity.noContent().build();
     }
+
+    @GetMapping
+    public ResponseEntity<Page<Product>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(productRepository.findAll(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getById(@PathVariable Long id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        return ResponseEntity.ok(optionalProduct.get());
+    }
+
+
 
 
 
