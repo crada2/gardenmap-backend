@@ -14,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/products")
 
@@ -25,7 +26,6 @@ public class ProductController {
     public ProductController(ProductRepository productRepository, OwnerRepository ownerRepository) {
         this.productRepository = productRepository;
         this.ownerRepository = ownerRepository;
-
     }
 
     @PostMapping
@@ -40,7 +40,6 @@ public class ProductController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedProduct.getId()).toUri();
         return ResponseEntity.created(location).body(savedProduct);
-
     }
 
     @PutMapping("/{id}")
@@ -87,9 +86,5 @@ public class ProductController {
 
         return ResponseEntity.ok(optionalProduct.get());
     }
-
-
-
-
 
 }

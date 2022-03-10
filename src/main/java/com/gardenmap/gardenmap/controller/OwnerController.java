@@ -26,7 +26,6 @@ public class OwnerController {
         this.productRepository = productRepository;
     }
 
-
     @PostMapping
     public ResponseEntity<Owner> create(@RequestBody Owner owner) {
         Owner savedOwner = ownerRepository.save(owner);
@@ -75,8 +74,5 @@ public class OwnerController {
     public ResponseEntity<Page<Owner>> getAll(Pageable pageable) {
         return ResponseEntity.ok(ownerRepository.findAll(pageable));
     }
-
-
-
 
 }
