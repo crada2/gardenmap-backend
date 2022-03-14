@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/owners")
 public class OwnerController {
