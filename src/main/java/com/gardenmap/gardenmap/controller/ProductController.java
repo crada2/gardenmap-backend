@@ -30,7 +30,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody Product product) {
-        Optional<Owner> optionalOwner = ownerRepository.findById(product.getOwner().getId());
+        Optional<Owner> optionalOwner = ownerRepository.findById(1L);
         if (!optionalOwner.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
