@@ -1,6 +1,4 @@
 package com.gardenmap.gardenmap.service;
 
-public interface OwnerService {
-
-
+public interface ProductService {
 }
