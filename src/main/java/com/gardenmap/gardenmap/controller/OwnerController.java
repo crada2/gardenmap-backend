@@ -3,6 +3,8 @@ package com.gardenmap.gardenmap.controller;
 import com.gardenmap.gardenmap.model.Owner;
 import com.gardenmap.gardenmap.repository.OwnerRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
+import com.gardenmap.gardenmap.service.OwnerService;
+import com.gardenmap.gardenmap.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/owners")
 public class OwnerController {
