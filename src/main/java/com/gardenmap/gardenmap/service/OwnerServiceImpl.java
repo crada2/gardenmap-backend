@@ -74,4 +74,9 @@ public class OwnerServiceImpl implements OwnerService {
         return ResponseEntity.noContent().build();
     }
 
+    @Override
+    public Optional<Owner> findById(Long id) {
+        return Optional.empty();
+    }
+
 }
