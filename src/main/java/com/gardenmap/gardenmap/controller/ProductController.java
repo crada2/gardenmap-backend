@@ -30,7 +30,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody Product product) {
-        Optional<Owner> optionalOwner = ownerService.findById(1L);
+
         return productService.create(product);
     }
 
@@ -59,9 +59,6 @@ public class ProductController {
 
         return productService.update(product, id);
     }
-
-
-
 
 
 

@@ -24,6 +24,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     private OwnerRepository ownerRepository;
 
+    public ProductServiceImpl(ProductRepository productRepository, OwnerRepository ownerRepository) {
+        this.productRepository = productRepository;
+        this.ownerRepository = ownerRepository;
+    }
+
     @Override
     public ResponseEntity<Product> create(@RequestBody Product product) {
         Optional<Owner> optionalOwner = ownerRepository.findById(1L);
@@ -67,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id) {
-        Optional<Owner> optionalOwner = ownerRepository.findById(1L);
+        Optional<Owner> optionalOwner = ownerRepository.findById(id);
         if (!optionalOwner.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
