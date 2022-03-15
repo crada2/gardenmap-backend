@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Optional;
+
 public interface OwnerService {
 
     ResponseEntity<Owner> create(Owner owner);
@@ -14,4 +16,6 @@ public interface OwnerService {
     ResponseEntity<Page<Owner>> getAll(Pageable pageable);
     ResponseEntity<Owner> getById(Long id);
     ResponseEntity<Owner> update(Long id, Owner owner);
+
+    Optional<Owner> findById(Long id);
 }
