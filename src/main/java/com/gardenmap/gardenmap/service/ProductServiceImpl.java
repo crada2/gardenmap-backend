@@ -30,17 +30,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseEntity<Product> create(@RequestBody Product product) {
-        Optional<Owner> optionalOwner = ownerRepository.findById(1L);
-        if (!optionalOwner.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
-        }
-        product.setOwner(optionalOwner.get());
-
+    public Product create(@RequestBody Product product) {
+        var owner = ownerRepository.findById(1L).get();
+        product.setOwner(owner);
         Product savedProduct = productRepository.save(product);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedProduct.getId()).toUri();
-        return ResponseEntity.created(location).body(savedProduct);
+
+        return savedProduct;
     }
 
     @Override
