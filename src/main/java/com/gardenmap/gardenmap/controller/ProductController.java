@@ -1,6 +1,5 @@
 package com.gardenmap.gardenmap.controller;
 
-import com.gardenmap.gardenmap.model.Owner;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.service.OwnerService;
 import com.gardenmap.gardenmap.service.ProductService;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Optional;
 
 @CrossOrigin
 @RestController
