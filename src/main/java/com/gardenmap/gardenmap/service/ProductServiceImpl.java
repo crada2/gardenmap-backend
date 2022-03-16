@@ -4,16 +4,12 @@ import com.gardenmap.gardenmap.model.Owner;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.OwnerRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.Optional;
 
 @Service
@@ -39,49 +35,45 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseEntity<Product> delete (@PathVariable Long id) {
+    public boolean delete (@PathVariable Long id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (!optionalProduct.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return false;
         }
         productRepository.delete(optionalProduct.get());
-
-        return ResponseEntity.noContent().build();
+        return true;
     }
 
     @Override
-    public ResponseEntity<Page<Product>> getAll(Pageable pageable) {
-
-        return ResponseEntity.ok(productRepository.findAll(pageable));
+    public Page<Product> getAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override
-    public ResponseEntity<Product> getById(@PathVariable Long id) {
+    public Product getById(@PathVariable Long id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (!optionalProduct.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return null;
         }
-
-        return ResponseEntity.ok(optionalProduct.get());
+        return optionalProduct.get();
     }
 
     @Override
-    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id) {
+    public Product update(@RequestBody Product product, @PathVariable Long id) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
         if (!optionalOwner.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return null;
         }
 
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (!optionalProduct.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return null;
         }
 
         product.setOwner(optionalOwner.get());
         product.setId(optionalProduct.get().getId());
-        productRepository.save(product);
 
-        return ResponseEntity.noContent().build();
+        return productRepository.save(product);
     }
 
 }
