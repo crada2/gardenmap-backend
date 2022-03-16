@@ -37,26 +37,35 @@ public class OwnerController {
 
     @GetMapping
     public ResponseEntity<Page<Owner>> getAll(Pageable pageable) {
-
-        return ownerService.getAll(pageable);
+        Page<Owner> page = ownerService.getAll(pageable);
+        return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Owner> getById(@PathVariable Long id) {
-
-        return ownerService.getById(id);
+        Owner owner = ownerService.getById(id);
+        if (owner == null){
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(owner);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Owner> delete(@PathVariable Long id) {
-
-        return ownerService.delete(id);
+        boolean isDelete = ownerService.delete(id);
+        if (!isDelete) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Owner> update(@PathVariable Long id, @RequestBody Owner owner) {
-
-        return ownerService.update(id, owner);
+        Owner updatedOwner = ownerService.update(id, owner);
+        if (owner == null){
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(updatedOwner);
     }
 
 

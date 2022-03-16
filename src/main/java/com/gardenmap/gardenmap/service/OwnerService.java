@@ -10,10 +10,10 @@ import java.util.Optional;
 public interface OwnerService {
 
     Owner create(Owner owner);
-    ResponseEntity<Owner> delete(Long id);
-    ResponseEntity<Page<Owner>> getAll(Pageable pageable);
-    ResponseEntity<Owner> getById(Long id);
-    ResponseEntity<Owner> update(Long id, Owner owner);
+    boolean delete(Long id);
+    Page<Owner> getAll(Pageable pageable);
+    Owner getById(Long id);
+    Owner update(Long id, Owner owner);
 
     Optional<Owner> findById(Long id);
 }

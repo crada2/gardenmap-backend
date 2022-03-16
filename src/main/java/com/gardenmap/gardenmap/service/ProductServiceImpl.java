@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(@RequestBody Product product) {
-        var owner = ownerRepository.findById(1L).get();
+        var owner = ownerRepository.findById(2L).get();
         product.setOwner(owner);
         Product savedProduct = productRepository.save(product);
 

@@ -27,52 +27,49 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner create(@RequestBody Owner owner) {
-        //var owner = ownerRepository.save(owner);
         Owner savedOwner = ownerRepository.save(owner);
-       // URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-               // .buildAndExpand(savedOwner.getId()).toUri();
 
         return savedOwner;
     }
 
     @Override
-    public ResponseEntity<Owner> delete(@PathVariable Long id) {
+    public boolean delete(@PathVariable Long id) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
 
         if (!optionalOwner.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return false;
         }
 
         ownerRepository.delete(optionalOwner.get());
-        return ResponseEntity.noContent().build();
+        return true;
     }
 
     @Override
-    public ResponseEntity<Page<Owner>> getAll(Pageable pageable) {
-        return ResponseEntity.ok(ownerRepository.findAll(pageable));
+    public Page<Owner> getAll(Pageable pageable) {
+
+        return ownerRepository.findAll(pageable);
     }
 
     @Override
-    public ResponseEntity<Owner> getById(@PathVariable Long id) {
+    public Owner getById(@PathVariable Long id) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
 
         if (!optionalOwner.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return null;
         }
-        return ResponseEntity.ok(optionalOwner.get());
+        return optionalOwner.get();
     }
 
     @Override
-    public ResponseEntity<Owner> update(@PathVariable Long id, @RequestBody Owner owner) {
+    public Owner update(@PathVariable Long id, @RequestBody Owner owner) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
         if (!optionalOwner.isPresent()) {
-            return ResponseEntity.unprocessableEntity().build();
+            return null;
         }
 
         owner.setId(optionalOwner.get().getId());
-        ownerRepository.save(owner);
 
-        return ResponseEntity.noContent().build();
+        return ownerRepository.save(owner);
     }
 
     @Override
@@ -80,4 +77,4 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerRepository.findById(id);
     }
 
-}
+    }
