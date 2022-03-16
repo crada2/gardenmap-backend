@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface OwnerService {
 
-    ResponseEntity<Owner> create(Owner owner);
+    Owner create(Owner owner);
     ResponseEntity<Owner> delete(Long id);
     ResponseEntity<Page<Owner>> getAll(Pageable pageable);
     ResponseEntity<Owner> getById(Long id);

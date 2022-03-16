@@ -26,12 +26,13 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public ResponseEntity<Owner> create(@RequestBody Owner owner) {
+    public Owner create(@RequestBody Owner owner) {
+        //var owner = ownerRepository.save(owner);
         Owner savedOwner = ownerRepository.save(owner);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-                .buildAndExpand(savedOwner.getId()).toUri();
+       // URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
+               // .buildAndExpand(savedOwner.getId()).toUri();
 
-        return ResponseEntity.created(location).body(savedOwner);
+        return savedOwner;
     }
 
     @Override
