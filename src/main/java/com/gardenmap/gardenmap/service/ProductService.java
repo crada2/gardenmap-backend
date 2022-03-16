@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface ProductService {
-    public Product create(Product product);
-    ResponseEntity<Product> delete (Long id);
-    ResponseEntity<Page<Product>> getAll(Pageable pageable);
-    ResponseEntity<Product> getById(Long id);
-    ResponseEntity<Product> update(Product product, Long id);
+    Product create(Product product);
+    boolean delete (Long id);
+    Page<Product> getAll(Pageable pageable);
+    Product getById(Long id);
+    Product update(Product product, Long id);
 }
