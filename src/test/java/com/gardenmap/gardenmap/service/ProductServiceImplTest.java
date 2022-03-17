@@ -21,6 +21,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 class ProductServiceImplTest {
@@ -83,19 +85,34 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void ProductServiceCantGetAProducts() {
+    void ProductServiceCantGetAllProducts() {
         var listProducts = List.of(new Product(), new Product());
         Page<Product> productPage = new PageImpl<>(listProducts);
 
         Mockito.when(productRepository.findAll(productPage.getPageable())).thenReturn(productPage);
         var productService = new ProductServiceImpl(productRepository, ownerRepository);
         var sut = productService.getAll(productPage.getPageable());
+        //verify(productRepository, atLeast(1)).findAll();
 
         assertEquals(sut, productPage);
+
     }
 
-   /* @Test
+     /*
+
+  @Test
     void ProductServiceCantUpdateAProduct() {
+
+      Product product = new Product();
+
+      Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+      productRepository.save(product);
+
+      Product updatedProduct = productRepository.findById();
+
+      assertThat(updatedProduct.getPrice()).isEqualTo();
+
+
         Product product = new Product();
 
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
@@ -105,7 +122,7 @@ class ProductServiceImplTest {
         var sut = productService.update(product, 1L);
 
         assertEquals(sut, product);
-    }*/
-
+    }
+*/
 
 }

@@ -9,11 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class OwnerServiceImplTest {
@@ -51,5 +53,43 @@ public class OwnerServiceImplTest {
 
         assertTrue(sut);
     }
+
+    @Test
+    void OwnerServiceCantDeleteAOwner() {
+        Owner owner = new Owner();
+
+        Mockito.when(ownerRepository.findById(1L)).thenReturn(Optional.empty());
+
+        var ownerService = new OwnerServiceImpl(ownerRepository, productRepository);
+        var sut = ownerService.delete(1L);
+
+        assertFalse(sut);
+    }
+
+    @Test
+    void OwnerServiceCantGetAllOwners() {
+        var listOwners = List.of(new Owner(), new Owner());
+        Page<Owner> ownerPage = new PageImpl<>(listOwners);
+
+        Mockito.when(ownerRepository.findAll(ownerPage.getPageable())).thenReturn(ownerPage);
+        var ownerService = new OwnerServiceImpl(ownerRepository, productRepository);
+        var sut = ownerService.getAll(ownerPage.getPageable());
+        //verify(productRepository, atLeast(1)).findAll();
+
+        assertEquals(sut, ownerPage);
+
+    }
+
+    @Test
+    void OwnerServiceCantGetAnOwnerById() {
+        Owner owner = new Owner();
+
+        Mockito.when(ownerRepository.findById(1L)).thenReturn(Optional.of(owner));
+        var ownerService = new OwnerServiceImpl(ownerRepository, productRepository);
+        var sut = ownerService.getById(1L);
+
+        assertEquals(sut, owner);
+    }
+
 
 }
