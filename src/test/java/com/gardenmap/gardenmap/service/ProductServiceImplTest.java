@@ -10,9 +10,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -78,13 +82,24 @@ class ProductServiceImplTest {
         assertEquals(sut, product);
     }
 
+    @Test
+    void ProductServiceCantGetAProducts() {
+        var listProducts = List.of(new Product(), new Product());
+        Page<Product> productPage = new PageImpl<>(listProducts);
+
+        Mockito.when(productRepository.findAll(productPage.getPageable())).thenReturn(productPage);
+        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var sut = productService.getAll(productPage.getPageable());
+
+        assertEquals(sut, productPage);
+    }
+
    /* @Test
     void ProductServiceCantUpdateAProduct() {
         Product product = new Product();
-        var newOwner = new Owner();
 
+        Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         Mockito.when(productRepository.save(product)).thenReturn(product);
-        Mockito.when(ownerRepository.findById(1L)).thenReturn(Optional.of(newOwner));
 
         var productService = new ProductServiceImpl(productRepository, ownerRepository);
         var sut = productService.update(product, 1L);
