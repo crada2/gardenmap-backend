@@ -23,20 +23,25 @@ public class OwnerServiceImplTest {
 
     @Mock
     ProductRepository productRepository;
+
     @Mock
     OwnerRepository ownerRepository;
 
     @Test
-    void ProductServiceCanCreateAProduct() {
-        Product product = new Product();
-        var newOwner = new Owner();
-        Mockito.when(productRepository.save(product)).thenReturn(product);
-        Mockito.when(ownerRepository.findById(2L)).thenReturn(Optional.of(newOwner));
+    void OwnerServiceCanCreateAOwner() {
+        Owner owner = new Owner();
 
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
-        var sut = productService.create(product);
+        Mockito.when(ownerRepository.save(owner)).thenReturn(owner);
 
-        assertEquals(sut, product);
+        var ownerService = new OwnerServiceImpl(ownerRepository, productRepository);
+        var sut = ownerService.create(owner);
+
+        assertEquals(sut, owner);
+    }
+
+    @Test
+    void OwnerServiceCanDeleteAOwner() {
+
     }
 
 }

@@ -2,16 +2,14 @@ package com.gardenmap.gardenmap.service;
 
 import com.gardenmap.gardenmap.model.Owner;
 import com.gardenmap.gardenmap.repository.OwnerRepository;
+import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.Optional;
 
 
@@ -21,7 +19,7 @@ public class OwnerServiceImpl implements OwnerService {
     @Autowired
     private OwnerRepository ownerRepository;
 
-    public OwnerServiceImpl(OwnerRepository ownerRepository) {
+    public OwnerServiceImpl(OwnerRepository ownerRepository, ProductRepository productRepository) {
         this.ownerRepository = ownerRepository;
     }
 
