@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class OwnerServiceImplTest {
@@ -41,7 +42,14 @@ public class OwnerServiceImplTest {
 
     @Test
     void OwnerServiceCanDeleteAOwner() {
+        Owner owner = new Owner();
 
+        Mockito.when(ownerRepository.findById(1L)).thenReturn(Optional.of(owner));
+
+        var ownerService = new OwnerServiceImpl(ownerRepository, productRepository);
+        var sut = ownerService.delete(1L);
+
+        assertTrue(sut);
     }
 
 }
