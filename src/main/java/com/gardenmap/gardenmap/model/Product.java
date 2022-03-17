@@ -25,4 +25,5 @@ public class Product {
     @JoinColumn(name = "owner_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Owner owner;
+
 }
