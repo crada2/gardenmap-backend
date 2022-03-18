@@ -1,7 +1,6 @@
 package com.gardenmap.gardenmap.service;
 
 import com.gardenmap.gardenmap.model.Owner;
-import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.OwnerRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +25,6 @@ public class OwnerServiceImplTest {
 
     @Mock
     ProductRepository productRepository;
-
     @Mock
     OwnerRepository ownerRepository;
 
@@ -55,8 +53,7 @@ public class OwnerServiceImplTest {
     }
 
     @Test
-    void OwnerServiceCantDeleteAOwner() {
-        Owner owner = new Owner();
+    void OwnerServiceCantDeleteAOwnerIfTheOwnerDoesNotExist() {
 
         Mockito.when(ownerRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -81,15 +78,19 @@ public class OwnerServiceImplTest {
     }
 
     @Test
-    void OwnerServiceCantGetAnOwnerById() {
+    void OwnerServiceCantUpdateAOwner() {
         Owner owner = new Owner();
 
-        Mockito.when(ownerRepository.findById(1L)).thenReturn(Optional.of(owner));
+        Mockito.when(ownerRepository.findById(2L)).thenReturn(Optional.of(owner));
+        Mockito.when(ownerRepository.save(owner)).thenReturn(owner);
+
+        owner.setId(2L);
+
         var ownerService = new OwnerServiceImpl(ownerRepository, productRepository);
-        var sut = ownerService.getById(1L);
+
+        var sut = ownerService.update(owner, 2L);
 
         assertEquals(sut, owner);
     }
-
 
 }

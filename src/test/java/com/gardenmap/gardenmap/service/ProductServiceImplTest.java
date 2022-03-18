@@ -11,18 +11,12 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 class ProductServiceImplTest {
@@ -39,7 +33,8 @@ class ProductServiceImplTest {
     @Test
     void ProductServiceCanCreateAProduct() {
         Product product = new Product();
-        var newOwner = new Owner();
+        Owner newOwner = new Owner();
+
         Mockito.when(productRepository.save(product)).thenReturn(product);
         Mockito.when(ownerRepository.findById(2L)).thenReturn(Optional.of(newOwner));
 
@@ -63,7 +58,6 @@ class ProductServiceImplTest {
 
     @Test
     void ProductServiceCantDeleteWhenProductDoesNotExist() {
-        Product product = new Product();
 
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -92,37 +86,26 @@ class ProductServiceImplTest {
         Mockito.when(productRepository.findAll(productPage.getPageable())).thenReturn(productPage);
         var productService = new ProductServiceImpl(productRepository, ownerRepository);
         var sut = productService.getAll(productPage.getPageable());
-        //verify(productRepository, atLeast(1)).findAll();
 
         assertEquals(sut, productPage);
 
     }
 
-     /*
-
-  @Test
+    @Test
     void ProductServiceCantUpdateAProduct() {
-
-      Product product = new Product();
-
-      Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-      productRepository.save(product);
-
-      Product updatedProduct = productRepository.findById();
-
-      assertThat(updatedProduct.getPrice()).isEqualTo();
-
-
         Product product = new Product();
+        Owner owner = new Owner();
 
-        Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+        Mockito.when(productRepository.findById(2L)).thenReturn(Optional.of(product));
         Mockito.when(productRepository.save(product)).thenReturn(product);
 
+        product.setOwner(owner);
+        product.setId(2L);
+
         var productService = new ProductServiceImpl(productRepository, ownerRepository);
-        var sut = productService.update(product, 1L);
+
+        var sut = productService.update(product, 2L);
 
         assertEquals(sut, product);
     }
-*/
-
 }

@@ -13,7 +13,7 @@ public interface OwnerService {
     boolean delete(Long id);
     Page<Owner> getAll(Pageable pageable);
     Owner getById(Long id);
-    Owner update(Long id, Owner owner);
+    Owner update(Owner owner, Long id);
 
     Optional<Owner> findById(Long id);
 }

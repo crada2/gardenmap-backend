@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product create(@RequestBody Product product) {
         var owner = ownerRepository.findById(2L).get();
+
         product.setOwner(owner);
         Product savedProduct = productRepository.save(product);
 
@@ -60,18 +61,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(@RequestBody Product product, @PathVariable Long id) {
-        Optional<Owner> optionalOwner = ownerRepository.findById(id);
-        if (!optionalOwner.isPresent()) {
-            return null;
-        }
-
         Optional<Product> optionalProduct = productRepository.findById(id);
+
         if (!optionalProduct.isPresent()) {
             return null;
         }
 
-        product.setOwner(optionalOwner.get());
-        product.setId(optionalProduct.get().getId());
+        product.setId(id);
+        product.setOwner(optionalProduct.get().getOwner());
 
         return productRepository.save(product);
     }

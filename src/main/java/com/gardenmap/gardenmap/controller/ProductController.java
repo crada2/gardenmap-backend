@@ -64,13 +64,12 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id) {
         Product updatedProduct = productService.update(product, id);
+
         if (product == null) {
             return ResponseEntity.unprocessableEntity().build();
         }
+
         return ResponseEntity.ok(updatedProduct);
     }
-
-
-
 
 }

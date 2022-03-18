@@ -59,7 +59,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner update(@PathVariable Long id, @RequestBody Owner owner) {
+    public Owner update(@RequestBody Owner owner, @PathVariable Long id) {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
         if (!optionalOwner.isPresent()) {
             return null;
@@ -75,4 +75,4 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerRepository.findById(id);
     }
 
-    }
+}

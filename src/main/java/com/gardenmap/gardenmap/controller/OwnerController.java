@@ -60,8 +60,8 @@ public class OwnerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Owner> update(@PathVariable Long id, @RequestBody Owner owner) {
-        Owner updatedOwner = ownerService.update(id, owner);
+    public ResponseEntity<Owner> update(@RequestBody Owner owner, @PathVariable Long id) {
+        Owner updatedOwner = ownerService.update(owner, id);
         if (owner == null){
             return ResponseEntity.unprocessableEntity().build();
         }
