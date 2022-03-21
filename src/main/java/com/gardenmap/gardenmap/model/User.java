@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "owner")
 
-public class Owner {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +17,7 @@ public class Owner {
     private String direction;
     private Long telephone;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Product> product = new HashSet<>();
 
     public Long getId() {
@@ -76,7 +76,7 @@ public class Owner {
         this.product = product;
 
         for(Product n : product) {
-            n.setOwner(this);
+            n.setUser(this);
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.gardenmap.gardenmap.repository;
 
-import com.gardenmap.gardenmap.model.Owner;
+import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.model.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +8,19 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
-class OwnerRepositoryTest {
+class UserRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
-    OwnerRepository ownerRepository;
+    UserRepository userRepository;
 
     @Test
     void findByOwnerReturnAnOwnerProductList() {
-        var owner = new Owner();
+        var user = new User();
         var product = new Product();
-        product.setOwner(owner);
+        product.setUser(user);
 
-        entityManager.persist(owner);
+        entityManager.persist(user);
         entityManager.persist(product);
         entityManager.flush();
 

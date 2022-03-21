@@ -1,8 +1,8 @@
 package com.gardenmap.gardenmap.service;
 
-import com.gardenmap.gardenmap.model.Owner;
+import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.model.Product;
-import com.gardenmap.gardenmap.repository.OwnerRepository;
+import com.gardenmap.gardenmap.repository.UserRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,17 +28,17 @@ class ProductServiceImplTest {
     @Mock
     ProductRepository productRepository;
     @Mock
-    OwnerRepository ownerRepository;
+   UserRepository userRepository;
 
     @Test
     void ProductServiceCanCreateAProduct() {
         Product product = new Product();
-        Owner newOwner = new Owner();
+        User newUser = new User();
 
         Mockito.when(productRepository.save(product)).thenReturn(product);
-        Mockito.when(ownerRepository.findById(2L)).thenReturn(Optional.of(newOwner));
+        Mockito.when(userRepository.findById(2L)).thenReturn(Optional.of(newUser));
 
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut = productService.create(product);
 
         assertEquals(sut, product);
@@ -50,7 +50,7 @@ class ProductServiceImplTest {
 
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut= productService.delete(1L);
 
         assertTrue(sut);
@@ -61,7 +61,7 @@ class ProductServiceImplTest {
 
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.empty());
 
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut= productService.delete(1L);
 
         assertFalse(sut);
@@ -72,7 +72,7 @@ class ProductServiceImplTest {
         Product product = new Product();
 
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut = productService.getById(1L);
 
         assertEquals(sut, product);
@@ -84,7 +84,7 @@ class ProductServiceImplTest {
         Page<Product> productPage = new PageImpl<>(listProducts);
 
         Mockito.when(productRepository.findAll(productPage.getPageable())).thenReturn(productPage);
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut = productService.getAll(productPage.getPageable());
 
         assertEquals(sut, productPage);
@@ -94,15 +94,15 @@ class ProductServiceImplTest {
     @Test
     void ProductServiceCantUpdateAProduct() {
         Product product = new Product();
-        Owner owner = new Owner();
+        User user = new User();
 
         Mockito.when(productRepository.findById(2L)).thenReturn(Optional.of(product));
         Mockito.when(productRepository.save(product)).thenReturn(product);
 
-        product.setOwner(owner);
+        product.setUser(user);
         product.setId(2L);
 
-        var productService = new ProductServiceImpl(productRepository, ownerRepository);
+        var productService = new ProductServiceImpl(productRepository,userRepository);
 
         var sut = productService.update(product, 2L);
 

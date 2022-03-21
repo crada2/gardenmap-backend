@@ -1,8 +1,8 @@
 package com.gardenmap.gardenmap.controller;
 
 import com.gardenmap.gardenmap.model.Product;
-import com.gardenmap.gardenmap.service.OwnerService;
 import com.gardenmap.gardenmap.service.ProductService;
+import com.gardenmap.gardenmap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,12 +18,12 @@ import java.net.URI;
 
 public class ProductController {
     private final ProductService productService;
-    private final OwnerService ownerService;
+    private final UserService userService;
 
     @Autowired
-    public ProductController(ProductService productService, OwnerService ownerService) {
+    public ProductController(ProductService productService, UserService userService) {
         this.productService = productService;
-        this.ownerService = ownerService;
+        this.userService = userService;
     }
 
     @PostMapping

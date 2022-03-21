@@ -22,8 +22,8 @@ public class Product {
     private Double price;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "user_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Owner owner;
+    private User user;
 
 }

@@ -1,7 +1,7 @@
 package com.gardenmap.gardenmap.service;
 
 import com.gardenmap.gardenmap.model.Product;
-import com.gardenmap.gardenmap.repository.OwnerRepository;
+import com.gardenmap.gardenmap.repository.UserRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,18 +17,18 @@ public class ProductServiceImpl implements ProductService {
 
 
     private ProductRepository productRepository;
-    private OwnerRepository ownerRepository;
+    private UserRepository userRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository, OwnerRepository ownerRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
-        this.ownerRepository = ownerRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public Product create(@RequestBody Product product) {
-        var owner = ownerRepository.findById(2L).get();
+        var user = userRepository.findById(2L).get();
 
-        product.setOwner(owner);
+        product.setUser(user);
         Product savedProduct = productRepository.save(product);
 
         return savedProduct;
@@ -67,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         product.setId(id);
-        product.setOwner(optionalProduct.get().getOwner());
+        product.setUser(optionalProduct.get().getUser());
 
         return productRepository.save(product);
     }
