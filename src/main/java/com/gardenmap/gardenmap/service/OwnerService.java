@@ -3,7 +3,6 @@ package com.gardenmap.gardenmap.service;
 import com.gardenmap.gardenmap.model.Owner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 

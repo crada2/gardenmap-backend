@@ -1,7 +1,6 @@
 package com.gardenmap.gardenmap.controller;
 
 import com.gardenmap.gardenmap.model.Owner;
-import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

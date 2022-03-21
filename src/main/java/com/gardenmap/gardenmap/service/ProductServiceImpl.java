@@ -1,6 +1,5 @@
 package com.gardenmap.gardenmap.service;
 
-import com.gardenmap.gardenmap.model.Owner;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.OwnerRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
