@@ -7,8 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
-
-public class AuthenticationFacade {
+public class AuthenticationFacade implements IAuthenticationFacade {
     @Autowired
     UserRepository userRepository;
 
@@ -16,5 +15,4 @@ public class AuthenticationFacade {
         var userName = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByUsername(userName).get();
     }
-
 }

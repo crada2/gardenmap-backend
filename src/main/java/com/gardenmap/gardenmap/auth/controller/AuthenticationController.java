@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//import javax.validation.Valid;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
@@ -27,8 +26,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/auth")
-
 public class AuthenticationController {
+
     private final UserRepository userRepository;
 
     private final RoleRepository roleRepository;

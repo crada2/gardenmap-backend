@@ -2,7 +2,6 @@ package com.gardenmap.gardenmap.auth.configuration;
 
 import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserDetailsServiceImplementation implements UserDetailsService {
+
     UserRepository userRepository;
 
     @Autowired
@@ -27,5 +27,4 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
 
         return UserDetailsImplementation.build(user);
     }
-
 }

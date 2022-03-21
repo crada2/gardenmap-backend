@@ -8,8 +8,11 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+;
+
 @Component
 public class RoleRepositoryInitializer {
+
     private RoleRepository roleRepository;
 
     @Autowired
@@ -31,5 +34,4 @@ public class RoleRepositoryInitializer {
 
         roleRepository.saveAll(roles);
     }
-
 }

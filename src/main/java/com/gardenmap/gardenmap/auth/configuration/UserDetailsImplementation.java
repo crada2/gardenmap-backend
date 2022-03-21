@@ -1,8 +1,7 @@
 package com.gardenmap.gardenmap.auth.configuration;
 
-import com.gardenmap.gardenmap.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gardenmap.gardenmap.model.Role;
+import com.gardenmap.gardenmap.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,23 +20,17 @@ public class UserDetailsImplementation implements UserDetails {
 
     private String email;
 
-    private String direction;
-
-    private Long telephone;
-
     @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImplementation(Long id, String username, String email, String password, String direction, Long telephone,
+    public UserDetailsImplementation(Long id, String username, String email, String password,
                                      Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.direction = direction;
-        this.telephone = telephone;
         this.authorities = authorities;
     }
 
@@ -51,8 +44,6 @@ public class UserDetailsImplementation implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getDirection(),
-                user.getTelephone(),
                 authorities);
     }
 
@@ -77,16 +68,6 @@ public class UserDetailsImplementation implements UserDetails {
     @Override
     public String getUsername() {
         return username;
-    }
-
-    @Override
-    public String getDirection() {
-        return direction;
-    }
-
-    @Override
-    public Long getTelephone() {
-        return telephone;
     }
 
     @Override

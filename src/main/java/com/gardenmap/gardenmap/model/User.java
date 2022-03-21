@@ -11,20 +11,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "owner")
+@Table(name = "user")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String email;
-    private String direction;
-    private Long telephone;
 
     @JsonIgnore
     private String password;
@@ -34,6 +31,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Product> product = new HashSet<>();
+
+    @ManyToMany
+    private Set<Role> roles;
 
     public Set<Product> getProduct() {
         return product;
@@ -47,12 +47,15 @@ public class User {
         }
     }
 
-    public User(String username, String email, String encode, String direction, Long telephone) {
+    public User(long id, String name) {
+        this.username = name;
+        this.id = id;
+    }
+
+    public User(String username, String email, String encode) {
         this.username = username;
         this.email = email;
         this.password = encode;
-        this.direction = direction;
-        this.telephone = telephone;
     }
 
 }

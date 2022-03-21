@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-
 public class Role {
     public enum RoleName {
         ROLE_USER,
@@ -20,7 +19,6 @@ public class Role {
     private RoleName name;
 
     public Role() {
-
     }
 
     public Role(Integer id, RoleName name) {
