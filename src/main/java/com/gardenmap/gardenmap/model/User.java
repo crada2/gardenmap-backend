@@ -35,9 +35,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Product> product = new HashSet<>();
 
-
-
-
     public Set<Product> getProduct() {
         return product;
     }
