@@ -1,72 +1,42 @@
 package com.gardenmap.gardenmap.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "owner")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String username;
     private String email;
-    private String password;
     private String direction;
     private Long telephone;
+
+    @JsonIgnore
+    private String password;
+    public User(String name) {
+        this.username = name;
+    }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Product> product = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public Long getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(Long telephone) {
-        this.telephone = telephone;
-    }
 
     public Set<Product> getProduct() {
         return product;
@@ -79,4 +49,13 @@ public class User {
             n.setUser(this);
         }
     }
+
+    public User(String username, String email, String encode, String direction, Long telephone) {
+        this.username = username;
+        this.email = email;
+        this.password = encode;
+        this.direction = direction;
+        this.telephone = telephone;
+    }
+
 }

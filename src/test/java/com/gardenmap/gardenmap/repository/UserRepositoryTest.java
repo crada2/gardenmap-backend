@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-@DataJpaTest
+/*@DataJpaTest
 class UserRepositoryTest {
 
     @Autowired
@@ -15,7 +15,7 @@ class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    void findByOwnerReturnAnOwnerProductList() {
+    void findByUserReturnAnUserProductList() {
         var user = new User();
         var product = new Product();
         product.setUser(user);
@@ -26,4 +26,4 @@ class UserRepositoryTest {
 
     }
 
-}
+}*/
