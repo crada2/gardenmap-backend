@@ -1,8 +1,10 @@
 package com.gardenmap.gardenmap.service;
 
+import com.gardenmap.gardenmap.auth.facade.IAuthenticationFacade;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.UserRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,8 @@ import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
 
-
+    @Autowired
+    private IAuthenticationFacade authenticateUser;
     private ProductRepository productRepository;
     private UserRepository userRepository;
 
@@ -26,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(@RequestBody Product product) {
-        var user = userRepository.findById(1L).get();
+        var user = authenticateUser.getAuthUser();
 
         product.setUser(user);
         Product savedProduct = productRepository.save(product);
