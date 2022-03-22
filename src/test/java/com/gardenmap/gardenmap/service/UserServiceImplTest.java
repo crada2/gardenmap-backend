@@ -1,5 +1,6 @@
 package com.gardenmap.gardenmap.service;
 
+import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.repository.UserRepository;
 import com.gardenmap.gardenmap.repository.ProductRepository;
@@ -62,6 +63,18 @@ public class UserServiceImplTest {
 
         assertFalse(sut);
     }
+
+    @Test
+    void UserServiceCanGetAUserById() {
+        User user = new User();
+
+        Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+        var userService = new UserServiceImpl(userRepository, productRepository);
+        var sut = userService.getById(1L);
+
+        assertEquals(sut, user);
+    }
+
 
     @Test
     void UserServiceCantGetAllUsers() {

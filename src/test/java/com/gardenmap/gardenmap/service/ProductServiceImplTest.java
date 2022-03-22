@@ -68,7 +68,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void ProductServiceCantGetAProductById() {
+    void ProductServiceCanGetAProductById() {
         Product product = new Product();
 
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
