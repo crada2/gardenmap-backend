@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(@RequestBody Product product) {
-        var user = userRepository.findById(2L).get();
+        var user = userRepository.findById(1L).get();
 
         product.setUser(user);
         Product savedProduct = productRepository.save(product);

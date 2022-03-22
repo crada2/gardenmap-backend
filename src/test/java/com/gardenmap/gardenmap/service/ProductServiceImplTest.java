@@ -36,7 +36,7 @@ class ProductServiceImplTest {
         User newUser = new User();
 
         Mockito.when(productRepository.save(product)).thenReturn(product);
-        Mockito.when(userRepository.findById(2L)).thenReturn(Optional.of(newUser));
+        Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(newUser));
 
         var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut = productService.create(product);
@@ -96,7 +96,7 @@ class ProductServiceImplTest {
         Product product = new Product();
         User user = new User();
 
-        Mockito.when(productRepository.findById(2L)).thenReturn(Optional.of(product));
+        Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         Mockito.when(productRepository.save(product)).thenReturn(product);
 
         product.setUser(user);
@@ -104,7 +104,7 @@ class ProductServiceImplTest {
 
         var productService = new ProductServiceImpl(productRepository,userRepository);
 
-        var sut = productService.update(product, 2L);
+        var sut = productService.update(product, 1L);
 
         assertEquals(sut, product);
     }
