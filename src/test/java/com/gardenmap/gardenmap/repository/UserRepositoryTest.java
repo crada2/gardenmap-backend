@@ -1,5 +1,5 @@
 package com.gardenmap.gardenmap.repository;
-
+/*
 import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.model.Product;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-/*@DataJpaTest
+@DataJpaTest
 class UserRepositoryTest {
 
     @Autowired

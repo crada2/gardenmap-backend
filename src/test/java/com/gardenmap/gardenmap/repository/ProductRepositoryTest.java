@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
+/*
 @DataJpaTest
 class ProductRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
     UserRepository ownerRepository;
-    ProductRepository productRepository;
 
-   /* @Test
+
+    @Test
     void findByUserReturnAnOwnerProductList() {
         var user = new User();
         var User = new User();
