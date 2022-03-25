@@ -1,6 +1,7 @@
 package com.gardenmap.gardenmap.controller;
 
 import com.gardenmap.gardenmap.model.Product;
+import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.service.ProductService;
 import com.gardenmap.gardenmap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.List;
 import java.net.URI;
 
 @CrossOrigin
@@ -49,6 +51,12 @@ public class ProductController {
     public ResponseEntity<Page<Product>> getAll(Pageable pageable) {
         Page<Product> page = productService.getAll(pageable);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<Product>> findAllByUser() {
+        List<Product> productList  = productService.findAllByUser();
+        return ResponseEntity.ok(productList);
     }
 
     @GetMapping("/{id}")
