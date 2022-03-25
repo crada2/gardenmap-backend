@@ -1,32 +1,32 @@
-package com.gardenmap.gardenmap.repository;
+/*package com.gardenmap.gardenmap.repository;
 
-import com.gardenmap.gardenmap.model.User;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.gardenmap.gardenmap.model.Product;
+import com.gardenmap.gardenmap.model.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-/*
+
 @DataJpaTest
 class ProductRepositoryTest {
 
     @Autowired
-    private TestEntityManager entityManager;
-    UserRepository ownerRepository;
+    TestEntityManager entityManager;
+    ProductRepository productRepository;
+    RoleRepository roleRepository;
 
 
     @Test
     void findByUserReturnAnOwnerProductList() {
-        var user = new User();
-        var User = new User();
-        var product = new Product();
-        product.setUser(user);
-
-        entityManager.persist(user);
-        entityManager.persist(product);
+        var role = new Role();
+        entityManager.persist(role);
         entityManager.flush();
 
-
-    }*/
+        assertEquals(roleRepository.findByName(Role.RoleName).size());
+        assertEquals(role, roleRepository.findByName(Role.RoleName).get());
+    }
 
 }
+
+ */

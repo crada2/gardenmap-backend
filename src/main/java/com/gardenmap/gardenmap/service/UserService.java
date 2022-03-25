@@ -12,7 +12,7 @@ public interface UserService {
     Page<User> getAll(Pageable pageable);
     User getById(Long id);
     User update(User user, Long id);
-
+    User getAuthenticatedUser();
     Optional<User> findById(Long id);
 
 }

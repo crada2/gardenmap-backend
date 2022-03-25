@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class AuthenticationFacade implements IAuthenticationFacade {
     @Autowired
@@ -13,6 +15,13 @@ public class AuthenticationFacade implements IAuthenticationFacade {
 
     public User getAuthUser() {
         var userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByUsername(userName).get();
+
+        Optional<User> optionalUser = userRepository.findByUsername(userName);
+
+        if (!optionalUser.isPresent()) {
+            return null;
+        }
+
+        return optionalUser.get();
     }
 }

@@ -1,5 +1,6 @@
 package com.gardenmap.gardenmap.service;
 
+import com.gardenmap.gardenmap.auth.facade.IAuthenticationFacade;
 import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.repository.ProductRepository;
 import com.gardenmap.gardenmap.repository.UserRepository;
@@ -16,6 +17,8 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private IAuthenticationFacade authenticateUser;
     @Autowired
     private UserRepository userRepository;
 
@@ -75,4 +78,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id);
     }
 
+    @Override
+    public User getAuthenticatedUser() {
+        User user = authenticateUser.getAuthUser();
+        return user;
+    }
 }

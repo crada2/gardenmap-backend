@@ -49,6 +49,12 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<User> me() {
+        User user = userService.getAuthenticatedUser();
+        return ResponseEntity.ok(user);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<User> delete(@PathVariable Long id) {
         boolean isDelete = userService.delete(id);
