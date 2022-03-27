@@ -1,5 +1,6 @@
 package com.gardenmap.gardenmap.service;
 
+import com.gardenmap.gardenmap.auth.facade.IAuthenticationFacade;
 import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.model.Product;
 import com.gardenmap.gardenmap.repository.UserRepository;
@@ -28,15 +29,17 @@ class ProductServiceImplTest {
     @Mock
     ProductRepository productRepository;
     @Mock
-   UserRepository userRepository;
+    UserRepository userRepository;
+    @Mock
+    IAuthenticationFacade authenticateUser;
 
     @Test
     void ProductServiceCanCreateAProduct() {
         Product product = new Product();
-        User newUser = new User();
+        User user = new User();
 
         Mockito.when(productRepository.save(product)).thenReturn(product);
-        Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(newUser));
+        Mockito.when(authenticateUser.getAuthUser()).thenReturn(user);
 
         var productService = new ProductServiceImpl(productRepository, userRepository);
         var sut = productService.create(product);
