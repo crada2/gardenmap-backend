@@ -1,7 +1,6 @@
 package com.gardenmap.gardenmap.controller;
 
 import com.gardenmap.gardenmap.model.Product;
-import com.gardenmap.gardenmap.model.User;
 import com.gardenmap.gardenmap.service.ProductService;
 import com.gardenmap.gardenmap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,5 @@
 package com.gardenmap.gardenmap.auth.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

@@ -1,7 +1,6 @@
 package com.gardenmap.gardenmap.service;
 
 import com.gardenmap.gardenmap.model.Product;
-import com.gardenmap.gardenmap.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
