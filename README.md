@@ -1,4 +1,4 @@
-<p align="center"><img src="./public/img/Readme.MD/CradaLogoGat.png?raw=true" width="200"></a></p>
+<p align="center"><img src="./src/gardenmaps.png" width="200"></a></p>
 
 Garden Maps 🌳
 ============
