@@ -5,32 +5,41 @@ Garden Maps 🌳
 
 ***
 
-## Introduction 🌿
+## Introduction 🚜
 
-Aplicación creada para que los propietarios de huertos urbanos tengan un espacio donde puedan brindar sur servicios, de manera que podamos fomentar y apoyar a los huertos urbanos. \
-Los propietarios podrán iniciar sesión y encontrarán un formulario para adherir su jardín a la red. Se les preguntará por la ubicación de su jardí, proporcionarán una descripción sobre qué tipo de actividades pueden realizar los visitantes en su jardín y el costo de las mismas.
+The "GardenMaps" project is a web application that aims to link families and agriculture enthusiasts, through activities that promote services such as rent or sale of natural products.
 
-## Starting 🍏
+## Objectives of the practice 🌱🌿
 
-En este repositorio creamos la Api para Garden Maps \
-[Puedes acceder al FrontEnd de Garden Maps aquí](https://github.com/crada2/gardenmap-frontend)
+1.- Users will be able to locate the orchards closest to their home, enjoy open-air events, and keep up to date with their activities and services.
 
-## Project Setup 🍃
+2.- Users will be able to create the events, services or activities that they promote in their gardens or green areas.
 
-Usamos Spring Boot 
-- Empezamos creando el proyecto con [Spring Initializr](https://start.spring.io/)
+3.- Users can register, log in or log out.
+
+4.- Users can delete completed services or activities.
+
+## Starting 🌿 🌎
+
+In this repository we create the API for Garden Maps \
+[You can access the FrontEnd of Garden Maps here](https://github.com/crada2/gardenmap-frontend)
+
+## Project Setup 🪴
+
+We use Spring Boot
+- We start by creating the project with [Spring Initializr](https://start.spring.io/)
 ```
 Gradle project
-Dependencias: Spring Web | Spring Data JPA | MySQL Driver | Lombok | Spring Security | Spring Boot DevTools
+Dependencies: Spring Web | Spring Data JPA | MySQL Driver | Lombok | Spring Security | Spring Boot DevTools
 ```
 
-- git clone o fork este repositorio https://github.com/crada2/gardenmap-backend.git
+- git clone or fork this repository https://github.com/crada2/gardenmap-backend.git
 
 ```
 - cd gardenmap
-- Crea un archivo con el nombre "application.properties" y llénalo con la informacion de tu base de datos, puedes usar el archivo de ejemplo "application.properties.example"
-- Crear una tabla llamada "services" en MySQL
-- Ahora puedes correr la Api
+- Create a file named "application.properties" and fill it with the information of your database, you can use the example file "application.properties.example"
+- Create a table called "services" in MySQL
+- Now you can run the API
 ```
 
 ## Tech Stack & Tools 🛠
@@ -46,9 +55,10 @@ Dependencias: Spring Web | Spring Data JPA | MySQL Driver | Lombok | Spring Secu
 - [Mayu Ruru](https://github.com/MayuRuru)
 - [Davina Medina](https://github.com/Davina-dev)
 - [Cecilia Carbajal](https://github.com/belcar-ceci)
+- [Soledad Maradini](https://github.com/solidmaradini)
 
 ## Gratitude 🌸
 
-- Comenta a otros sobre este proyecto 📢 
-- Apoya nuestros proyectos ⭐
-- Hecho con ❤️ por [CRADA](https://github.com/crada2) 🐱
+- Tell others about this project 📢 
+- Support our projects ⭐
+- Made with ❤️ by [CRADA](https://github.com/crada2) 🐱
