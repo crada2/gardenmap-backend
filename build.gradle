@@ -26,7 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	/*implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'*/
 	compileOnly 'org.projectlombok:lombok'
-	//implementation 'com.h2database:h2:2.1.218'
+	implementation 'com.h2database:h2:2.1.210'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	//runtimeOnly 'org.postgresql:postgresql'

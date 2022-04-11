@@ -48,5 +48,4 @@ class ProductRepositoryTest {
         assertEquals(1, sut.size());
 
     }
-
 }*/

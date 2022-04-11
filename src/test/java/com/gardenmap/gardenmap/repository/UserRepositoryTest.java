@@ -23,7 +23,5 @@ class UserRepositoryTest {
         entityManager.persist(user);
         entityManager.persist(product);
         entityManager.flush();
-
     }
-
 }*/
