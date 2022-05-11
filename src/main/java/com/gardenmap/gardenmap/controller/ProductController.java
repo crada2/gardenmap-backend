@@ -8,10 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
-import java.net.URI;
 
 @CrossOrigin
 @RestController
@@ -31,10 +29,7 @@ public class ProductController {
     public ResponseEntity<Product> create(@RequestBody Product product) {
         Product savedProduct = productService.create(product);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedProduct.getId()).toUri();
-
-        return ResponseEntity.created(location).body(savedProduct);
+        return ResponseEntity.ok(savedProduct);
     }
 
     @DeleteMapping("/{id}")

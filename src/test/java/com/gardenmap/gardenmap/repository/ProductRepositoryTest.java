@@ -1,4 +1,4 @@
-/*package com.gardenmap.gardenmap.repository;
+package com.gardenmap.gardenmap.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.gardenmap.gardenmap.model.Product;
@@ -13,26 +13,27 @@ class ProductRepositoryTest {
 
     @Autowired
     TestEntityManager entityManager;
+    @Autowired
     ProductRepository productRepository;
 
 
-    @Test
+    /*@Test
     void findAll() {
         Product product = new Product();
         entityManager.persist(product);
         entityManager.flush();
         assertEquals(1, productRepository.findAll().size());
-    }
+    }*/
 
-    @Test
+    /*@Test
     void FindAllProductsReturnsAnAllProductsList() {
         Product product = new Product();
         entityManager.persist(product);
         entityManager.flush();
 
         assertEquals(1, productRepository.findAll().size());
-        assertEquals(product, productRepository.findAll().get(8));
-    }
+        assertEquals(product, productRepository.findAll().get(0));
+    }*/
 
     @Test
     void FindAllProductsByUser() {
@@ -48,4 +49,4 @@ class ProductRepositoryTest {
         assertEquals(1, sut.size());
 
     }
-}*/
+}

@@ -24,5 +24,4 @@ public class Product {
     @JoinColumn(name = "user_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
-
 }

@@ -7,16 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-
 
     @Autowired
     public UserController(UserService userService) {
@@ -28,9 +24,7 @@ public class UserController {
 
        User savedUser=  userService.create(user);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-        .buildAndExpand(savedUser.getId()).toUri();
-        return ResponseEntity.created(location).body(savedUser);
+        return ResponseEntity.ok(savedUser);
     }
 
     @GetMapping
@@ -71,7 +65,4 @@ public class UserController {
         }
         return ResponseEntity.ok(updatedUser);
     }
-
-
-
 }

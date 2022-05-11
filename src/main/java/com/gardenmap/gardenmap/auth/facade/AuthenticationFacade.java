@@ -21,7 +21,6 @@ public class AuthenticationFacade implements IAuthenticationFacade {
         if (!optionalUser.isPresent()) {
             return null;
         }
-
         return optionalUser.get();
     }
 }

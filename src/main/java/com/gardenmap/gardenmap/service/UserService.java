@@ -14,5 +14,4 @@ public interface UserService {
     User update(User user, Long id);
     User getAuthenticatedUser();
     Optional<User> findById(Long id);
-
 }
